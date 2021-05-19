@@ -11,10 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-from distutils.util import strtobool
 from pathlib import Path
-
-from kombu import Exchange, Queue
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +26,8 @@ SECRET_KEY = 'django-insecure-d+$i7#h(3ob!=8hz=k*&duyb=qa^--o_x3gjhj6=$(@&t45-ns
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = allowed_hosts.split(',') if (allowed_hosts := os.getenv('ALLOWED_HOSTS')) else ['*']
+ALLOWED_HOSTS: list[str] = allowed_hosts.split(',') if (
+    allowed_hosts := os.getenv('ALLOWED_HOSTS')) else ['*']
 if (pod_id := os.getenv('POD_IP')) and allowed_hosts:
     ALLOWED_HOSTS.append(pod_id)
 if (host_ip := os.getenv('HOST_IP')) and allowed_hosts:
@@ -132,39 +130,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Celery application definition
-ASYNC_ENABLED = strtobool(os.getenv('ASYNC_ENABLED', 'True'))
-REDIS_SIGNALS_BROKER_URL = os.getenv('REDIS_SIGNALS_BROKER_URL', 'redis://localhost:6379/0')
-LOCAL_SIGNALS_BROKER_URL = 'memory://'
-CELERY_BROKER_URL = REDIS_SIGNALS_BROKER_URL if ASYNC_ENABLED else LOCAL_SIGNALS_BROKER_URL
-if ASYNC_ENABLED:
-    CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-CELERY_RESULT_PERSISTENT = False
-
-# Allow to recover from any unknown crash.
-CELERY_TASK_ACKS_LATE = True
-
-# Set this to False in order to run async
-CELERY_TASK_ALWAYS_EAGER = False if ASYNC_ENABLED else True
-CELERY_TASK_IGNORE_RESULT = True
-CELERY_TASK_SERIALIZER = os.environ.get('CELERY_TASK_SERIALIZER', 'json')
-CELERY_RESULT_SERIALIZER = os.environ.get('CELERY_RESULT_SERIALIZER', 'json')
-CELERY_ACCEPT_CONTENT = [
-    CELERY_RESULT_SERIALIZER,
-]
-CELERY_ENABLE_UTC = True
-CELERY_TIMEZONE = TIME_ZONE
-
-CELERY_RESULT_EXPIRES = 43200
-CELERY_RESULT_COMPRESSION = 'gzip'
-CELERY_RESULT_CACHE_MAX = 32768
-CELERY_TASK_EAGER_PROPAGATES = True
-CELERY_TASK_CREATE_MISSING_QUEUES = strtobool(os.environ.get('CELERY_TASK_CREATE_MISSING_QUEUES', 'True'))
-DEFAULT_EXCHANGE = Exchange('default', type='direct', durable=True)
-CELERY_TASK_QUEUES = (
-    Queue('default', DEFAULT_EXCHANGE, routing_key='default'),
-    Queue('secondary', DEFAULT_EXCHANGE, routing_key='secondary'),
-)
-# If True the task will report its status as ‘started’ when the task is executed by a worker.
-CELERY_TASK_TRACK_STARTED = True
