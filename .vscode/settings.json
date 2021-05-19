@@ -1,0 +1,33 @@
+{
+  "editor.rulers": [
+    119,
+    120
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "editor.fontSize": 12,
+  "editor.formatOnSave": false,
+  "git.ignoreLimitWarning": true,
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}/env/lib/"
+  ],
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "javascript.validate.enable": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length=120",
+    "--exclude= */migrations/*"
+],
+  "python.sortImports.path": "${workspaceFolder}/env/bin/isort",
+  "python.formatting.provider": "autopep8",
+  "python.formatting.autopep8Path": "${workspaceFolder}/env/bin/autopep8",
+  "workbench.colorCustomizations": {},
+  "python.envFile": "${workspaceFolder}/env.yaml",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}/env/lib/"
+  ],
+  "python.analysis.typeCheckingMode": "basic"
+}
