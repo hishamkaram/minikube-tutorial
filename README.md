@@ -1,5 +1,5 @@
 # Background
-our team is using Kubernetes to deploy our app on GCP (production) so we need to test the new Kubernetes changes before we apply these changes to production so in this series we will try to cover Kubernetes concepts, basics and some advanced topic like:
+our team is using Kubernetes to deploy our apps on GCP (production) so we need to test the new Kubernetes changes before we apply these changes to production, in this series we will try to cover Kubernetes concepts, basics and some advanced topic like:
 
 - [how to deploy a simple django app on minikube](#how-to-deploy-a-simple-django-app-on-minikube).
 - how to deploy celery on minikube.
@@ -7,7 +7,7 @@ our team is using Kubernetes to deploy our app on GCP (production) so we need to
 - how to use HPA/VPA to scale our web server.
 - how to create kubernetes custom metrics to scale celery workers based on redis/rabbitmq message queue.
 - how to create kubernetes custom metrics (stackdriver) to scale celery workers based on redis/rabbitmq message queue.
-- how to Hardening your cluster's security.
+- how to hardening your cluster's security.
 
 # How to Deploy a Simple Django App on minikube
 
@@ -257,7 +257,7 @@ From the spec file:
 
 - The `metadata: name` field describes the deployment name, whereas the `metadata: labels` describes the labels for the deployment i.e. can be thought of as a tagging mechanism.
 - The `spec: replicas` field defines the number of pods to run.
-- The `spec: selector:` matchLabels field describes what pods the deployment should apply to.
+- The `spec: selector: matchLabels` field describes what pods the deployment should apply to.
 - The `spec: template: metadata:` labels field indicates what labels should be assigned to the running pod. This label is what is found by the matchLabels field in the deployment.
 - The `spec: template: spec` field, contains a list of `containers` that belong to this pod. In this case it indicates the pod has one container as it only has one image and name in the list.
 - The deployment exposes port `8000` within the pod as defined in the `spec: template: spec: containers: ports` field.
@@ -338,7 +338,7 @@ web-service   NodePort    10.98.162.251   <none>        8080:30886/TCP   3m47s
 let's access our webservice using:
 
 ```shell
-minikube service --url <service_name>
+$ minikube service --url <service_name>
 🏃  Starting tunnel for service web-service.
 |-----------|-------------|-------------|------------------------|
 | NAMESPACE |    NAME     | TARGET PORT |          URL           |
