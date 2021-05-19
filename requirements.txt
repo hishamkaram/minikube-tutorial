@@ -1,11 +1,9 @@
 amqp==2.6.1
 asgiref==3.3.4
 billiard==3.6.4.0
-celery==4.4.7
 Django==3.2.3
 flake8==3.9.2
 isort==5.8.0
-kombu==4.6.11
 mccabe==0.6.1
 pycodestyle==2.7.0
 pyflakes==2.3.1
