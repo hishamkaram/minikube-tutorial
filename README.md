@@ -15,24 +15,20 @@ This article focuses on implementing the kubernetes hello-minikube tutorial adap
 
 - requirements:
 
-  - OS:
+  1. OS:
+        - Mac OS System / Linux
+        - this tutorial uses macOS Big Sur version: `v11.3.1`
 
-    - Mac OS System / Linux
-    - this tutorial uses macOS Big Sur version: `v11.3.1`
+  2. minikube:
+        - Minikube is one of the easiest ways to run a single node Kubernetes cluster locally. you can install it from [here](https://minikube.sigs.k8s.io/docs/start/)
+        - version: `v1.20.0`
 
-  - minikube:
+  3. Docker:
+        - Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. you can install it from [here](https://www.docker.com/products/docker-desktop)
+        - version `v20.10.6`
 
-    - Minikube is one of the easiest ways to run a single node Kubernetes cluster locally. you can install it from [here](https://minikube.sigs.k8s.io/docs/start/)
-    - version: `v1.20.0`
-
-  - Docker:
-
-    - Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. you can install it from [here](https://www.docker.com/products/docker-desktop)
-    - version `v20.10.6`
-
-  - Kubectl
-
-    - The Kubernetes command line tool is called kubectl and is used to deploy and manage applications. This is done by creating, updating and deleting components as well as inspecting cluster resources, you can install it from [here](https://kubernetes.io/docs/tasks/tools/)
+  4. Kubectl
+        - The Kubernetes command line tool is called kubectl and is used to deploy and manage applications. This is done by creating, updating and deleting components as well as inspecting cluster resources, you can install it from [here](https://kubernetes.io/docs/tasks/tools/)
 
 ## 1. Project Source Code:
 
